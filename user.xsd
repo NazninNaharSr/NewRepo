@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    targetNamespace="efood.schema.user"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified" 
+    xmlns:client_ns="efood.schema.client">
+        <xs:element name="UserId" type="xs:int" nillable="false"></xs:element>
+        <xs:element name="UserType" type="xs:int" nillable="false"></xs:element>
+        <xs:element name="UserEmail" type="xs:string"></xs:element>
+        <xs:element name="MenuList" type="xs:string"></xs:element>
+        
+
+        
+</xs:schema>

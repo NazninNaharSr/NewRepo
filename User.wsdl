@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='utf-8'?>
+<wsdl:definitions
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:tns="efood.service.user"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:ns1="http://schemas.xmlsoap.org/soap/http"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:user_schema="efood.schema.user"
+	name="UserService"
+	targetNamespace="efood.service.user">
+	<wsdl:types>
+		<xs:schema>
+			<xs:import schemaLocation="user.xsd" namespace="efood.schema.user"></xs:import>
+			<xs:import schemaLocation="menu.xsd" namespace="efood.schema.admin"></xs:import>
+		<!--<xs:import schemaLocation="member.xsd" namespace="efood.schema.member"></xs:import>-->
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="getUser">
+		<wsdl:part name="UserId" element="user_schema:UserId"></wsdl:part>
+		<wsdl:part name="UserType" element="user_schema:UserType"></wsdl:part>
+		<wsdl:part name="UserEmail" element="user_schema:UserEmail"></wsdl:part>
+		<!--<wsdl:part name="UserSalary" element="user_schema:UserSalary"></wsdl:part>-->
+
+	</wsdl:message>
+	<wsdl:message name="getUserIdentifier">
+		<wsdl:part name="Id" element="user_schema:UserId"></wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="getMenuIdentifier">
+		<wsdl:part name="menu" element="user_schema:MenuList"></wsdl:part>
+	</wsdl:message>
+
+
+	<wsdl:portType name="UserPortType">
+		<!-- The 'UserInformation' function will take id,name and age as input and will return user id. -->
+		<wsdl:operation name="UserInformation">
+			<wsdl:input message="tns:getUser" name="getUser"></wsdl:input>
+			<wsdl:output message="tns:getUserIdentifier" name="getUserIdentifier"></wsdl:output>
+		</wsdl:operation>
+
+		<!-- This operation will add my user taking user id as a input;this is a void function;this will just print a message-->
+		<wsdl:operation name="AddUser">
+			<wsdl:input message="tns:getUserIdentifier" name="getUserIdentifier"></wsdl:input>
+		</wsdl:operation>
+
+
+		<!-- This operation will delete my user taking user id as a input;this is a void function;this will just print a message-->
+		<wsdl:operation name="DeleteUser">
+			<wsdl:input message="tns:getUserIdentifier" name="getUserIdentifier"></wsdl:input>
+		</wsdl:operation>
+
+		<!-- This operation will update my user taking user id as a input;this is a void function;this will just print a message-->
+		<wsdl:operation name="UpdateUser">
+			<wsdl:input message="tns:getUserIdentifier" name="getUserIdentifier"></wsdl:input>
+		</wsdl:operation>
+
+		<wsdl:operation name="ViewMenu">
+			<wsdl:input message="tns:getMenuIdentifier" name="getMenuIdentifier"></wsdl:input>
+		</wsdl:operation>
+
+	</wsdl:portType>
+
+
+
+	<wsdl:binding name="UserService" type="tns:UserPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="UserInformation">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="getUser">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getUserIdentifier">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="AddUser">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="getUserIdentifier">
+				<soap:body use="literal"/>
+			</wsdl:input>
+		</wsdl:operation>
+
+
+		<wsdl:operation name="DeleteUser">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="getUserIdentifier">
+				<soap:body use="literal"/>
+			</wsdl:input>
+		</wsdl:operation>
+
+		<wsdl:operation name="UpdateUser">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="getUserIdentifier">
+				<soap:body use="literal"/>
+			</wsdl:input>
+		</wsdl:operation>
+
+		<wsdl:operation name="ViewMenu">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="getMenuIdentifier">
+				<soap:body use="literal"/>
+			</wsdl:input>
+		</wsdl:operation>
+
+	</wsdl:binding>
+
+	<wsdl:service name="User">
+		<wsdl:port binding="tns:UserService" name="ShowUserInformationPort">
+			<soap:address location="http://localhost:8080/show/"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
